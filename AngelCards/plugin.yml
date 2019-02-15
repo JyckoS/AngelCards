@@ -1,0 +1,10 @@
+name: AngelCards
+version: 1.0.4
+author: Gober
+description: Keeps inventory if player have a card!
+softdepend: [PlaceholderAPI]
+main: com.gmail.jyckosianjaya.angelcards.AngelCards
+commands:
+  angelcard:
+      usage: /<command>
+      aliases: [angelcards, acards, angels]

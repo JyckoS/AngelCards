@@ -1,0 +1,32 @@
+default_cards: 3
+saved_stats:
+  experience: true
+  level: true
+  inventory: true
+messages:
+  angel_card_used:
+  - "    &f&l&m                 "
+  - "  &e&lx1 &7Angel Cards used."
+  - "  &7You're safe for now."
+  - "    &f&l&m                 "
+  check_cards:
+  - "&a&l~ &7Current Angel Cards: &e&lx%c "
+  check_cards_others:
+  - "&a&l~ &f@a&7's Current Angel Cards: &e&lx@b"
+  cards_received:
+  - "&f&l < ! >"
+  - "> &7You received &e&lx@a &eAngel Cards."
+  - "> &7You now have &e&lx%c &7left."
+  cards_given:
+  - "&f&l < ! >"
+  - "> &7You gave &e&lx@a &7Angel Cards."
+  - "> &7to &a@b&7, you now have &e&lx%c &7left."
+  commands_help:
+  - "&f&o<<&e&l AngelCards &f&o>>"
+  - "&6&l@ &e/angelcard &fgive <Player> <Amount>"
+  - "&6&l@ &e/angelcard &fcheck"
+  no_permission:
+  - "&c&lOops! &7What are you trying to do?"
+# Placeholders: %c - Shows current angel cards
+#               %p - Shows player name
+#               
