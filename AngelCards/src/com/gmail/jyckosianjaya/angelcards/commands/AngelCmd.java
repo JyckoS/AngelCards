@@ -28,6 +28,13 @@ public class AngelCmd implements CommandExecutor {
 	private void redo(Player sender, String[] args) {
 		if (args.length == 0) {
 			AngelCards.getInstance().getDataStorage().sendMsg(sender, Messages.COMMANDS_HELP);
+			if (sender.hasPermission("angelcards.admin")) {
+				Utility.sendMsg(sender, "&cAs an admin, you can do:");
+				Utility.sendMsg(sender, "&6&l> &c/angelcards &fadd/take/set <Player> <Amount>");
+				Utility.sendMsg(sender, "&6&l> &c/angelcards &freload");
+				Utility.sendMsg(sender, "&6&l> &c/angelcards &fgiveall <Amount>");
+
+			}
 			return;
 		}
 		switch (args[0].toLowerCase()) {
