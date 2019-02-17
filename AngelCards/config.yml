@@ -27,6 +27,10 @@ messages:
   - "&6&l@ &e/angelcard &fcheck"
   no_permission:
   - "&c&lOops! &7What are you trying to do?"
+  toggled_on:
+  - "&f[ &a&l! &f] &7AngelCards has been toggled &aon&7, no worries."
+  toggled_off:
+  - "&f[ &c&l! &f] &7AngelCards has been toggled &coff&7, may god help you."
 # Placeholders: %c - Shows current angel cards
 #               %p - Shows player name
 #               

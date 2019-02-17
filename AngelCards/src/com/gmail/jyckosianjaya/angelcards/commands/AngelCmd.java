@@ -31,7 +31,28 @@ public class AngelCmd implements CommandExecutor {
 			return;
 		}
 		switch (args[0].toLowerCase()) {
-		case "giveall":
+		case "toggle":
+		{
+			if (!sender.hasPermission("angelcards.toggle")) {
+				AngelCards.getInstance().getDataStorage().sendMsg(sender, Messages.NO_PERMISSION);
+				return;
+			}
+			Cards cards = AngelCards.getInstance().getCardStorage().getCards(sender.getUniqueId());
+			if (cards == null) {
+				cards = AngelCards.getInstance().getCardStorage().setCards(sender.getUniqueId(), 0);
+			}
+			if (cards.isEnabled()) {
+				cards.setEnabled(false);
+				AngelCards.getInstance().getDataStorage().sendMsg(sender, Messages.TOGGLED_OFF);
+				return;
+			}
+			else {
+				cards.setEnabled(true);
+				AngelCards.getInstance().getDataStorage().sendMsg(sender, Messages.TOGGLED_ON);
+				return;
+			}
+		}
+			case "giveall":
 		{
 			if (!sender.hasPermission("angelcards.admin")) {
 				AngelCards.getInstance().getDataStorage().sendMsg(sender, Messages.NO_PERMISSION);

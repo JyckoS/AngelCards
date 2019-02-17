@@ -1,5 +1,5 @@
 name: AngelCards
-version: 1.0.4
+version: 1.0.5
 author: Gober
 description: Keeps inventory if player have a card!
 softdepend: [PlaceholderAPI]

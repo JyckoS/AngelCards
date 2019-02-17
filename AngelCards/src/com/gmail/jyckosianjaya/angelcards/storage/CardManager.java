@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.gmail.jyckosianjaya.angelcards.AngelCards;
 import com.gmail.jyckosianjaya.angelcards.data.Cards;
+import com.gmail.jyckosianjaya.angelcards.utility.Utility;
 
 public class CardManager {
 	private AngelCards m;
@@ -31,7 +32,13 @@ public class CardManager {
 		}
 		YamlConfiguration yml = YamlConfiguration.loadConfiguration(f);
 		int amount = yml.getInt("cards");
-		this.storage.setCards(uuid, amount);
+		boolean enabled = yml.getBoolean("enabled");
+		if (!yml.getKeys(false).contains("enabled")) {
+			enabled = true;
+		}
+		Cards c = new Cards(uuid, amount);
+		c.setEnabled(enabled);
+		this.storage.setCards(uuid, c);
 	}
 	public void saveData(UUID uuid) {
 		Cards cards = this.storage.getCards(uuid);
@@ -47,6 +54,7 @@ public class CardManager {
 		}
 		YamlConfiguration yml = YamlConfiguration.loadConfiguration(f);
 		yml.set("cards", cards.getAmount());
+		yml.set("enabled", cards.isEnabled());
 		try {
 			yml.save(f);
 		} catch (IOException e) {

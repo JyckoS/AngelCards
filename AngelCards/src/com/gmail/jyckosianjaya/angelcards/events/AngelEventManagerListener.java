@@ -24,6 +24,7 @@ public class AngelEventManagerListener implements Listener {
 		if (cards == null) return;
 		int amount = cards.getAmount();
 		if (amount <= 0) return;
+		if (!cards.isEnabled()) return;
 		DataStorage data = this.m.getDataStorage();
 		if (data.isExperienceSaved()) {
 		e.setDroppedExp(0);
