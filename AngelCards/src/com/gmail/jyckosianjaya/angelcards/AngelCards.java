@@ -37,16 +37,8 @@ public class AngelCards extends JavaPlugin {
 		Utility.sendConsole(prefix + "Loaded Config Data");
 		this.papienabled = Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI");
 		if (papienabled) {
-			Utility.sendConsole(prefix +"Hooking with PAPI..");
-			AngelPlaceholders placeholders = new AngelPlaceholders(this);
-			if (placeholders.hook()) {
-				Utility.sendConsole(prefix +"Successfully hooked with PAPI!");
-			}
-			else {
-				Utility.sendConsole(prefix +"PAPI hook fail..");
+			Utility.sendConsole(prefix +"PAPI found! Add placeholders with /papi ecloud download AngelCards");
 
-			}
-			
 		}
 	}
 	@Override
