@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 
 import com.gmail.jyckosianjaya.angelcards.AngelCards;
 import com.gmail.jyckosianjaya.angelcards.data.Cards;
@@ -20,6 +22,9 @@ public class CardManager {
 		datafolder = new File(m.getDataFolder(), "data");
 		if (!datafolder.exists()) {
 			datafolder.mkdirs();
+		}
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			loadData(p.getUniqueId());
 		}
 	}
 	public void loadData(UUID uuid) {

@@ -2,13 +2,13 @@ package com.gmail.jyckosianjaya.angelcards;
 
 import java.io.File;
 
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.gmail.jyckosianjaya.angelcards.commands.AngelCmd;
 import com.gmail.jyckosianjaya.angelcards.events.AngelEventManagerListener;
-import com.gmail.jyckosianjaya.angelcards.papi.AngelPlaceholders;
 import com.gmail.jyckosianjaya.angelcards.storage.CardManager;
 import com.gmail.jyckosianjaya.angelcards.storage.CardStorage;
 import com.gmail.jyckosianjaya.angelcards.storage.DataStorage;

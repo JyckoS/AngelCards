@@ -1,9 +1,24 @@
 default_cards: 3
+
+angelcard_item:
+  name: "&e&lAngelcard"
+  lore:
+  - "&7Click to redeem an"
+  - "&7angelcard."
+  material: PAPER
+  durability: 0
+
 saved_stats:
   experience: true
   level: true
   inventory: true
 messages:
+  card_withdrawn:
+  - "&e&l@a &7AngelCards withdrawn, you have &e&l%c &7left."
+  carditem_received:
+  - "&7You received &e&l@a Angelcard &7item, rightclick to redeem."
+  card_redeemed:
+  - "&a&l+1 &7AngelCards. You have &e&l%c&7 cards now."
   angel_card_used:
   - "    &f&l&m                 "
   - "  &e&lx1 &7Angel Cards used."

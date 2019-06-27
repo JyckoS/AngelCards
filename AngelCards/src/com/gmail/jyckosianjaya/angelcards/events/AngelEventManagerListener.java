@@ -1,13 +1,17 @@
 package com.gmail.jyckosianjaya.angelcards.events;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.ItemStack;
 
 import com.gmail.jyckosianjaya.angelcards.AngelCards;
 import com.gmail.jyckosianjaya.angelcards.data.Cards;
+import com.gmail.jyckosianjaya.angelcards.nbt.NBTItem;
 import com.gmail.jyckosianjaya.angelcards.storage.DataStorage;
 import com.gmail.jyckosianjaya.angelcards.storage.DataStorage.Messages;
 import com.gmail.jyckosianjaya.angelcards.utility.Utility;
@@ -42,6 +46,34 @@ public class AngelEventManagerListener implements Listener {
 
 		Utility.PlaySound(e.getEntity(), XSound.BLAZE_DEATH.bukkitSound(), 0.1F, 0F);
 		Utility.PlaySound(e.getEntity(), XSound.ORB_PICKUP.bukkitSound(), 2F, 1.3F);
+
+	}
+	@EventHandler
+	public void onRightclick(PlayerInteractEvent e) {
+		Player p = e.getPlayer();
+		ItemStack item = p.getInventory().getItemInMainHand();
+		if (item == null) return;
+		NBTItem nbt = new NBTItem(item);
+		if (!nbt.hasKey("acd")) return;
+		if (item.getAmount() > 1) {
+			item.setAmount(item.getAmount() - 1);
+			e.getPlayer().getInventory().setItemInMainHand(item);
+		}
+		else {
+			e.getPlayer().getInventory().setItemInMainHand(null);
+		}
+		Cards cards = this.m.getCardStorage().getCards(p.getUniqueId());
+		if (cards == null) {
+			cards = new Cards(p.getUniqueId(), 1);
+			this.m.getCardStorage().setCards(p.getUniqueId(), cards);
+		}
+		else {
+			cards.setAmount(cards.getAmount() + 1);
+		}
+		e.setCancelled(true);
+		this.m.getDataStorage().sendMsg(p, Messages.CARD_REDEEMED);
+
+		Utility.PlaySound(e.getPlayer(), XSound.ORB_PICKUP.bukkitSound(), 2F, 1F);
 
 	}
 	@EventHandler
