@@ -40,10 +40,8 @@ public class AngelCmd implements CommandExecutor {
 				Utility.sendMsg(send, "&6&l> &c/angelcards &fadd/take/set <Player> <Amount>");
 				Utility.sendMsg(send, "&6&l> &c/angelcards &freload");
 				Utility.sendMsg(send, "&6&l> &c/angelcards &fgiveitem <Player> <Amount>");
+				Utility.sendMsg(send, "&6&l> &c/angelcards &fgiveitemall <Amount>");
 				Utility.sendMsg(send, "&6&l> &c/angelcards &fgiveall <Amount>");
-			}
-			if (!isPlayer) {
-				Utility.sendMsg(send, "&6&l> &c/angelcards &fcheck <Player>");
 			}
 			return;
 		}
@@ -335,7 +333,7 @@ public class AngelCmd implements CommandExecutor {
 			if (cards.getAmount() < 0) {
 				cards.setAmount(0);
 			}
-			Utility.sendMsg(send, "&cChanged &f" + p.getName() + "'s &ccards to &c" + amount + " of cards.");
+			Utility.sendMsg(send, "&c Changed &f" + p.getName() + "'s &ccards to &c" + amount + " of cards.");
 			return;
 		}
 		case "check":

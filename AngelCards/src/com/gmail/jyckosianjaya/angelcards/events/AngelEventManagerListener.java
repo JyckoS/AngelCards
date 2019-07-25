@@ -51,16 +51,16 @@ public class AngelEventManagerListener implements Listener {
 	@EventHandler
 	public void onRightclick(PlayerInteractEvent e) {
 		Player p = e.getPlayer();
-		ItemStack item = p.getInventory().getItemInMainHand();
+		ItemStack item = p.getInventory().getItemInHand();
 		if (item == null) return;
 		NBTItem nbt = new NBTItem(item);
 		if (!nbt.hasKey("acd")) return;
 		if (item.getAmount() > 1) {
 			item.setAmount(item.getAmount() - 1);
-			e.getPlayer().getInventory().setItemInMainHand(item);
+			e.getPlayer().getInventory().setItemInHand(item);
 		}
 		else {
-			e.getPlayer().getInventory().setItemInMainHand(null);
+			e.getPlayer().getInventory().setItemInHand(null);
 		}
 		Cards cards = this.m.getCardStorage().getCards(p.getUniqueId());
 		if (cards == null) {

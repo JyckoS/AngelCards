@@ -37,9 +37,11 @@ messages:
   - "> &7You gave &e&lx@a &7Angel Cards."
   - "> &7to &a@b&7, you now have &e&lx%c &7left."
   commands_help:
-  - "&f&o<<&e&l AngelCards &f&o>>"
-  - "&6&l@ &e/angelcard &fgive <Player> <Amount>"
-  - "&6&l@ &e/angelcard &fcheck"
+  - "&f&o<< &e&l AngelCards &f&o>>"
+  - "&6&l> &e/angelcard &fpay <Player> <Amount>"
+  - "&6&l> &e/angelcard &fcheck <Player>"
+  - "&6&l> &e/angelcard &ftoggle"
+  - "&6&l> &e/angelcard &fwithdraw <Amount>"
   no_permission:
   - "&c&lOops! &7What are you trying to do?"
   toggled_on:
