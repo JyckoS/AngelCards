@@ -1,5 +1,6 @@
 package com.gmail.jyckosianjaya.angelcards.events;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +11,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
 import com.gmail.jyckosianjaya.angelcards.AngelCards;
+import com.gmail.jyckosianjaya.angelcards.customevents.AngelCardDeathEvent;
 import com.gmail.jyckosianjaya.angelcards.data.Cards;
 import com.gmail.jyckosianjaya.angelcards.nbt.NBTItem;
 import com.gmail.jyckosianjaya.angelcards.storage.DataStorage;
@@ -24,16 +26,26 @@ public class AngelEventManagerListener implements Listener {
 	private AngelCards m;
 	@EventHandler
 	public void onDeath(PlayerDeathEvent e) {
+		if (m.getDataStorage().isDisabled(e.getEntity().getWorld())) {
+			return;
+		}
 		Cards cards = this.m.getCardStorage().getCards(e.getEntity().getUniqueId());
+		AngelCardDeathEvent event = new AngelCardDeathEvent(e, cards);
+		Utility.callEvent(event);
+		if (event.isCancelled()) {
+			return;
+		}
 		if (cards == null) return;
 		int amount = cards.getAmount();
 		if (amount <= 0) return;
 		if (!cards.isEnabled()) return;
 		DataStorage data = this.m.getDataStorage();
 		if (data.isExperienceSaved()) {
+		
 		e.setDroppedExp(0);
 		}
 		if (data.isInventorySaved()) {
+			e.getDrops().clear();
 		e.setKeepInventory(true);
 		}
 		if (data.isLevelSaved()) {
@@ -53,7 +65,9 @@ public class AngelEventManagerListener implements Listener {
 		Player p = e.getPlayer();
 		ItemStack item = p.getInventory().getItemInHand();
 		if (item == null) return;
+		if (item.getType() == Material.AIR) return;
 		NBTItem nbt = new NBTItem(item);
+		if (nbt == null) return;
 		if (!nbt.hasKey("acd")) return;
 		if (item.getAmount() > 1) {
 			item.setAmount(item.getAmount() - 1);

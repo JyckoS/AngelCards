@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -22,6 +24,10 @@ public class DataStorage {
 	private int defaultcard;
 	private ItemStack angelitem = null;
 	private HashMap<Messages, List<String>> msg = new HashMap<Messages, List<String>>();
+	private ArrayList<World> banned_world = new ArrayList<World>();
+	public boolean isDisabled(World w) {
+		return this.banned_world.contains(w);
+			}
 	public DataStorage(AngelCards m) {
 		this.m = m;
 		reloadConfig();
@@ -32,9 +38,18 @@ public class DataStorage {
 		return item;
 	}
 	public void reloadConfig() {
+		this.banned_world.clear();
 		m.reloadConfig();
 		FileConfiguration config = m.getConfig();
 		{
+			for (String str : config.getStringList("disabled_worlds")) {
+				World w = Bukkit.getWorld(str);
+				if (w == null) {
+					Utility.sendConsole("&aAC > &7Unknown disabled world: &f" + str);
+					continue;
+				}
+				this.banned_world.add(w);
+			}
 		this.defaultcard = config.getInt("default_cards");
 		ConfigurationSection msgs = config.getConfigurationSection("messages");
 		this.msg.clear();

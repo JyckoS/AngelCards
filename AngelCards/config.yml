@@ -1,3 +1,7 @@
+disabled_worlds:
+- "pvp"
+- "60secondsinafrica"
+
 default_cards: 3
 
 angelcard_item:
